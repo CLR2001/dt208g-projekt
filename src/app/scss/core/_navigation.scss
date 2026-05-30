@@ -20,7 +20,8 @@
 
 .hamburger-button {
   display: flex;
-  font-size: 2em;  
+  font-size: 2em; 
+  justify-self: end; 
 }
 
 body:has([data-open="true"]) {

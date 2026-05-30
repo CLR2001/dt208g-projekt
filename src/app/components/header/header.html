@@ -1,17 +1,17 @@
 <header>
-      <div class="header-content">
-        <nav class="nav-list">
-          <ul>
-            <li>
-              <a routerLink="/" routerLinkActive="active-page" [routerLinkActiveOptions]="{ exact: true }">Start</a>
-            </li>
-            <li>
-              <a routerLink="/ramschema" routerLinkActive="active-page">Ramschema</a>
-            </li>
-          </ul>
-        </nav>
-        <button type="button" class="hamburger-button" aria-label="Open main menu">
-          <app-icons [name]="'hamburger-open'" />
-        </button>
-      </div>
-    </header>
+  <div class="header-content">
+    <button type="button" class="hamburger-button" aria-label="Open main menu" (click)="navigationService.toggleMenu()">
+      <app-icons [name]="navigationService.isMenuOpen() ? 'hamburger-close' : 'hamburger-open'" />
+    </button>
+    <nav class="nav-list" [attr.data-open]="navigationService.isMenuOpen()">
+      <ul>
+        <li>
+          <a routerLink="/" routerLinkActive="active-page" [routerLinkActiveOptions]="{ exact: true }" (click)="navigationService.closeMenu()">Start</a>
+        </li>
+        <li>
+          <a routerLink="/ramschema" routerLinkActive="active-page" (click)="navigationService.closeMenu()">Ramschema</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
