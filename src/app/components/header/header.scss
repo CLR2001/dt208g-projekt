@@ -3,8 +3,11 @@
 header {
   position: relative;
   overflow: hidden;
-  padding: 1rem $standard-padding;
+  padding: 0 $standard-padding;
   background-color: $color-primary;
+  app-icons {
+    display: flex;
+  }
 }
 
 .header-content {
@@ -14,6 +17,9 @@ header {
 
 :host-context(html[data-theme="light"]) {
   header {
-    color: $text-primary-inverse;
+    color: $text-muted-inverse;
+    ::ng-deep .icon {
+      stroke: $text-muted-inverse;
+    }
   }
 }

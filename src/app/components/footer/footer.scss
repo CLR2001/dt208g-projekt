@@ -25,9 +25,9 @@ footer {
 
 :host-context(html[data-theme="light"]) {
   footer {
-    color: $text-primary-inverse;
+    color: $text-muted-inverse;
     ::ng-deep .icon {
-      stroke: $text-primary-inverse;
+      stroke: $text-muted-inverse;
     }
   }
 }

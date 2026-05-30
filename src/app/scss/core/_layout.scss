@@ -12,7 +12,10 @@ app-root {
   margin: 0 auto;
 }
 
+main {
+  padding: 3rem $standard-padding;
+}
+
 .main-content {
   height: 100%;
-  padding: 3rem $standard-padding;
 }
