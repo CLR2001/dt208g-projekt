@@ -1,0 +1,82 @@
+@use 'variables' as *;
+
+.nav-list {
+  ul {
+    position: fixed;
+    inset:  $header-height 0 0 0;
+    display: none;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $color-primary;
+    z-index: 100;
+    a {
+      padding: 2rem 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.hamburger-button {
+  display: flex;
+  font-size: 2em;  
+}
+
+body:has([data-open="true"]) {
+  overflow: hidden;
+}
+
+.nav-list[data-open="true"] {
+  ul {
+    display: flex;
+    font-size: 1.3em;
+  }
+}
+
+.active-page {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 1.8rem;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $text-primary;
+  }
+}
+
+:host-context(html[data-theme="light"]) {
+  .hamburger-button {
+    color: $text-primary-inverse;
+  }
+  .active-page {
+    &::after {
+      background-color: $text-primary-inverse;
+    }
+  }
+}
+
+
+@media (min-width: 992px) {
+  .nav-list {
+    ul {
+      position: static;
+      inset: unset;
+      display: flex;
+      flex-direction: row;
+      a {
+        padding: 1ch 0;
+      }
+    }
+  }
+
+  .active-page::after {
+    bottom: 0.8ch;
+  }
+
+  .hamburger-button {
+    display: none;
+  }
+}

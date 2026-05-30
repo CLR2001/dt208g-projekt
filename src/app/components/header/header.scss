@@ -1,0 +1,19 @@
+@use '../../scss/core' as *;
+
+header {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem $standard-padding;
+  background-color: $color-primary;
+}
+
+.header-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+:host-context(html[data-theme="light"]) {
+  header {
+    color: $text-primary-inverse;
+  }
+}

@@ -1,0 +1,41 @@
+@use '../../scss/core' as *;
+
+footer {
+  padding: 1rem $standard-padding;
+  background-color: $color-primary;
+  a {
+    text-decoration: underline;
+  }
+}
+
+:host ::ng-deep{
+  .icon {
+    width: 1.5em;
+    stroke: $text-muted;
+  }
+}
+
+.footer-content {
+  ul {
+    display: grid;
+    place-items: center;
+    gap: 2rem;
+  }
+}
+
+:host-context(html[data-theme="light"]) {
+  footer {
+    color: $text-primary-inverse;
+    ::ng-deep .icon {
+      stroke: $text-primary-inverse;
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  .footer-content {
+    ul {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }  
+}

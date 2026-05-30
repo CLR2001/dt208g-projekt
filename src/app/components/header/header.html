@@ -1,0 +1,17 @@
+<header>
+      <div class="header-content">
+        <nav class="nav-list">
+          <ul>
+            <li>
+              <a routerLink="/" routerLinkActive="active-page" [routerLinkActiveOptions]="{ exact: true }">Start</a>
+            </li>
+            <li>
+              <a routerLink="/ramschema" routerLinkActive="active-page">Ramschema</a>
+            </li>
+          </ul>
+        </nav>
+        <button type="button" class="hamburger-button" aria-label="Open main menu">
+          <app-icons [name]="'hamburger-open'" />
+        </button>
+      </div>
+    </header>
