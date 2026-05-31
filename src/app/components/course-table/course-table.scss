@@ -35,6 +35,12 @@ td, th {
   padding: 1rem 1rem;
   border-bottom: 1px solid color-mix(in srgb, var(--text-primary), transparent 80%);
   cursor: default;
+  &:first-child {
+    padding-left: 0;
+  }
+  &:last-child {
+    padding-right: 0;
+  }
 }
 
 .syllabus-td {

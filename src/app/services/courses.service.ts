@@ -40,7 +40,7 @@ export class CourseService {
     direction: 'asc'
   });
   
-  private filteredAndSortedCourses = computed(() => {
+  filteredAndSortedCourses = computed(() => {
     let courses = this.allCourses();
 
     // Search filtering

@@ -1,8 +1,9 @@
 <section class="main-content home-main">
+  <h1>Kurser</h1>
   <div class="filter-search-container">
     <div>
       <label for="search">Sök:</label>
-      <input type="text" id="search" #search (input)="courseService.setSearchInput(search.value)">
+      <input type="text" id="search" #search (input)="courseService.setSearchInput(search.value)" autocomplete="off">
     </div>
     <div>
       <label for="subject">Ämne:</label>
@@ -14,5 +15,8 @@
       </select>
     </div>
   </div>
+  <p class="total-courses">
+    Listar {{ courseService.filteredAndSortedCourses().length }} av totalt {{ courseService.allCourses().length }}
+  </p>
   <app-course-table></app-course-table>
 </section>
