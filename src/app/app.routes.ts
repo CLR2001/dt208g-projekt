@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { Home } from './pages/home/home';
-import { Ramschema } from './pages/ramschema/ramschema';
+import { Home } from './components/pages/home/home';
+import { Ramschema } from './components/pages/ramschema/ramschema';
 
 
 export const routes: Routes = [

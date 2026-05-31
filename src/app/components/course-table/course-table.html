@@ -25,32 +25,49 @@
       <th scope="col">Lägg till</th>
     </tr>
   </thead>
-  <tbody>
-    @for (course of courseService.displayedCourses(); track course.courseCode) {
-      <tr>
-        <td>{{ course.courseCode }}</td>
-        <td>
-          <span [title]="course.courseName">
-            {{ course.courseName }}
-          </span>
-        </td>
-        <td>{{ course.points }}p</td>
-        <td>
-          <span [title]="course.subject">
-            {{ course.subject }}
-          </span>
-        </td>
-        <td class="syllabus-td">
-          <a href="{{ course.syllabus }}" target="_blank">Kursplan</a>
-        </td>
-        <td>
-          <button class="{{type}}-button" (click)="onButtonClick(course.courseCode)">
-            {{ buttonText }}
-          </button>
-        </td>
-      </tr>
-    }
-  </tbody>
+  @if (courses().length > 0) {
+    <tbody>
+      @for (course of courses(); track $index) {
+        <tr>
+          <td>{{ course.courseCode }}</td>
+          <td>
+            <span [title]="course.courseName">
+              {{ course.courseName }}
+            </span>
+          </td>
+          <td>{{ course.points }}p</td>
+          <td>
+            <span [title]="course.subject">
+              {{ course.subject }}
+            </span>
+          </td>
+          <td class="syllabus-td">
+            <a href="{{ course.syllabus }}" target="_blank">Kursplan</a>
+          </td>
+          <td>
+            <button class="{{type()}}-button" 
+              (click)="onButtonClick(course.courseCode)"
+              [disabled]="type() === 'add' && ramschemaService.savedCourseCodes().has(course.courseCode)">
+              
+              @if (type() === 'add' && ramschemaService.savedCourseCodes().has(course.courseCode)) {
+                Tillagd
+              } @else {
+                {{ buttonText() }}
+              }
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  } @else {
+    <p class="empty-text">
+      @if (type() === 'add') {
+        Hittade inga kurser som matchar din sökning.
+      } @else {
+        Du har inga sparade kurser.
+      }
+    </p>
+  }
 </table>
 @if (courseService.totalPages() > 1) {
   <div class="pagination-container">

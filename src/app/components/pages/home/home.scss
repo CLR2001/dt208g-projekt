@@ -1,10 +1,11 @@
-@use '../../scss/core' as *;
+@use '../../../scss/core' as *;
 
 .home-main {
   display: grid;
   grid-template-rows: auto auto auto 1fr;
   h1 {
     margin-bottom: 1rem;
+    color: $text-muted;
     font-size: 2.25em;
     font-weight: 500;
   }
@@ -39,4 +40,9 @@
     height: 1px;
     background-color: color-mix(in srgb, var(--text-primary), transparent 80%);
   }
+}
+
+:host ::ng-deep .empty-text {
+  grid-column: 1 / 7;
+  margin-top: 2rem;
 }

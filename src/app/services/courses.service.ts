@@ -3,6 +3,7 @@ import { computed, effect, inject, Injectable, signal } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { Course } from "../interfaces/course.interface";
 import { SortConfig } from "../interfaces/sort-config.interface";
+import { RamschemaService } from "./saved-courses.service";
 
 
 @Injectable({
@@ -10,14 +11,8 @@ import { SortConfig } from "../interfaces/sort-config.interface";
 })
 
 export class CourseService {
-  constructor() {
-    effect(() => {
-      const courseCodesArray = Array.from(this.savedCourseCodes());
-      localStorage.setItem('savedCourses', JSON.stringify(courseCodesArray));
-    });
-  }
-
   private http = inject(HttpClient);
+  ramschemaService = inject(RamschemaService);
 
   /* --------------------------------- Signals -------------------------------- */
   allCourses = toSignal(
@@ -30,6 +25,7 @@ export class CourseService {
      return [...new Set(subjects)];
   });
 
+  currentView = signal<'home' | 'ramschema'>('home');
   currentPage = signal<number>(1);
   itemsPerPage = 50;
 
@@ -41,7 +37,9 @@ export class CourseService {
   });
   
   filteredAndSortedCourses = computed(() => {
-    let courses = this.allCourses();
+    let courses = this.currentView() === 'home' 
+      ? this.allCourses() 
+      : this.savedCourses();
 
     // Search filtering
     const search = this.searchInput().toLowerCase().trim();
@@ -81,16 +79,19 @@ export class CourseService {
     const endIndex = startIndex + this.itemsPerPage;
     return courses.slice(startIndex, endIndex);
   });
-  
-  savedCourseCodes = signal<Set<string>>(this.getSavedCourses());
-
-  savedCourses = computed(() => {
-    const savedCodes = this.savedCourseCodes();
-    return this.allCourses().filter(course => savedCodes.has(course.courseCode));
-  });
 
   totalPages = computed(() => {
     return Math.ceil(this.filteredAndSortedCourses().length / this.itemsPerPage) || 1;
+  });
+
+  savedCourses = computed(() => {
+    const savedCodes = this.ramschemaService.savedCourseCodes();
+    return this.allCourses().filter(course => savedCodes.has(course.courseCode));
+  });
+
+  totalSavedPoints = computed(() => {
+    const totalPoints = this.savedCourses().reduce((sum, course) => sum + course.points, 0);
+    return totalPoints;
   });
 
   /* --------------------------- Filtering & Sorting -------------------------- */
@@ -112,34 +113,7 @@ export class CourseService {
     this.currentPage.set(1);
   }
 
-  /* ------------------------------ Functionality ----------------------------- */
-  private getSavedCourses(): Set<string> {
-    const savedCourseCodes = localStorage.getItem('savedCourses');
-
-    if (savedCourseCodes) {
-      const array = JSON.parse(savedCourseCodes);
-      return new Set(array);
-    }
-
-    return new Set();
-  }
-
-  addCourse(courseCode: Course['courseCode']) {
-    this.savedCourseCodes.update(set => {
-      const updatedSet = new Set(set);
-      updatedSet.add(courseCode);
-      return updatedSet;
-    });
-  }
-
-  removeCourse(courseCode: Course['courseCode']) {
-    this.savedCourseCodes.update(set => {
-      const updatedSet = new Set(set);
-      updatedSet.delete(courseCode);
-      return updatedSet;
-    });
-  }
-
+  /* ------------------------------- Pagination ------------------------------- */
   nextPage(): void {
     if (this.currentPage() < this.totalPages()) {
       this.currentPage.update(page => page + 1);

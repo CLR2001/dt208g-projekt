@@ -32,7 +32,7 @@ thead, tbody, tr {
 td, th {
   display: grid;
   align-items: center;
-  padding: 1rem 1rem;
+  padding: 1rem;
   border-bottom: 1px solid color-mix(in srgb, var(--text-primary), transparent 80%);
   cursor: default;
   &:first-child {
@@ -52,6 +52,23 @@ td, th {
   border-radius: 10px;
   color: $text-muted;
   background-color: $color-primary;
+  white-space: nowrap;
+  &:hover {
+    background-color: grey;
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+    &:active {
+      transform: scale(1);
+    }
+    &:hover {
+      background-color: $color-primary;
+    }
+  }
 }
 
 :host-context(html[data-theme="light"]) {
@@ -89,4 +106,14 @@ td, th {
 
 app-icons {
   display: flex;
+}
+
+@media (max-width: 900px) {
+  td, th {
+    padding: 0.25ch;
+  }
+
+  .add-button, .remove-button {
+    padding: 0.5ch 1ch;
+  }
 }

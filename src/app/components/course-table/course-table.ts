@@ -1,7 +1,8 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, input, inject } from '@angular/core';
 import { Course } from '../../interfaces/course.interface';
 import { CourseService } from '../../services/courses.service';
 import { Icons } from '../icons/icons';
+import { RamschemaService } from '../../services/saved-courses.service';
 
 @Component({
   selector: 'app-course-table',
@@ -11,16 +12,18 @@ import { Icons } from '../icons/icons';
   styleUrl: './course-table.scss',
 })
 export class CourseTable {
-  @Input() type: 'add' | 'remove' = 'add';
-  @Input() buttonText = 'Lägg till';
+  courses = input<Course[]>([]); 
+  type = input<'add' | 'remove'>('add');
+  buttonText = input<string>('Lägg till');
 
   courseService = inject(CourseService);
+  ramschemaService = inject(RamschemaService);
 
   onButtonClick(courseCode: string): void {
-    if (this.type === 'add') {
-      this.courseService.addCourse(courseCode);
+    if (this.type() === 'add') {
+      this.ramschemaService.addCourse(courseCode);
     } else {
-      this.courseService.removeCourse(courseCode);
+      this.ramschemaService.removeCourse(courseCode);
     }
   }
 }

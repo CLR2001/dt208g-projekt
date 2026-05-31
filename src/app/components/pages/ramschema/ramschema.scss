@@ -1,0 +1,24 @@
+@use '../../../scss/core' as *;
+
+.ramschema-main {
+  display: grid;
+  grid-template-rows: auto 1fr 1fr;
+  h1 {
+    margin-bottom: 1rem;
+    color: $text-muted;
+    font-size: 2.25em;
+    font-weight: 500;
+  }
+}
+
+:host ::ng-deep .empty-text {
+  grid-column: 1 / 7;
+  margin-top: 2rem;
+}
+
+.saved-courses-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0;
+}

@@ -18,5 +18,5 @@
   <p class="total-courses">
     Listar {{ courseService.filteredAndSortedCourses().length }} av totalt {{ courseService.allCourses().length }}
   </p>
-  <app-course-table></app-course-table>
+  <app-course-table [courses]="courseService.displayedCourses()"></app-course-table>
 </section>

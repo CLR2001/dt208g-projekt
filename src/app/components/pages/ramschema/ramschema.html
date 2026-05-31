@@ -1,0 +1,8 @@
+<section class="main-content ramschema-main">
+  <h1>Mitt ramschema</h1>
+  <app-course-table  [courses]="courseService.filteredAndSortedCourses()" [type]="'remove'" [buttonText]="'Ta bort'"></app-course-table>
+  <div class="saved-courses-info">
+    <p>Antal kurser: {{ courseService.filteredAndSortedCourses().length }}st</p>
+    <p>Totalt antal poäng: {{ courseService.totalSavedPoints() }}hp</p>
+  </div>
+</section>
