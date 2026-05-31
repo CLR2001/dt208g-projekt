@@ -1,1 +1,68 @@
-<p>course-table works!</p>
+<table class="courseTable">
+  <thead>
+    <tr>
+      <th scope="col">
+        <span (click)="courseService.setSortConfig('courseCode')">
+          Kurskod<app-icons [name]="'arrow-up-down'"></app-icons>
+        </span> 
+      </th>
+      <th scope="col">
+        <span (click)="courseService.setSortConfig('courseName')">
+          Namn<app-icons [name]="'arrow-up-down'"></app-icons>
+        </span> 
+      </th>
+      <th scope="col">
+        <span (click)="courseService.setSortConfig('points')">
+          Poäng<app-icons [name]="'arrow-up-down'"></app-icons>
+        </span> 
+      </th>
+      <th scope="col">
+        <span (click)="courseService.setSortConfig('subject')">
+          Ämne<app-icons [name]="'arrow-up-down'"></app-icons>
+        </span> 
+      </th>
+      <th scope="col">Kursplan</th>
+      <th scope="col">Lägg till</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (course of courseService.displayedCourses(); track course.courseCode) {
+      <tr>
+        <td>{{ course.courseCode }}</td>
+        <td>
+          <span [title]="course.courseName">
+            {{ course.courseName }}
+          </span>
+        </td>
+        <td>{{ course.points }}p</td>
+        <td>{{ course.subject }}</td>
+        <td class="subject-td">
+          <a href="{{ course.syllabus }}" target="_blank">Kursplan</a>
+        </td>
+        <td>
+          <button class="{{type}}-button" (click)="onButtonClick(course.courseCode)">
+            {{ buttonText }}
+          </button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+@if (courseService.totalPages() > 1) {
+  <div class="pagination-container">
+    <button (click)="courseService.previousPage()">
+      <app-icons [name]="'left-chevron'"></app-icons>Föregående
+    </button>
+
+    <span>
+      <label for="page">Sida:</label> 
+      <input type="number" [value]="courseService.currentPage()" (input)="courseService.setPage($event)" min="1" [max]="courseService.totalPages()">
+      / {{ courseService.totalPages() }}
+    </span>
+
+    <button
+      (click)="courseService.nextPage()">
+      Nästa<app-icons [name]="'right-chevron'"></app-icons>
+    </button>
+  </div>
+}

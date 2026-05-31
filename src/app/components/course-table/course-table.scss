@@ -1,0 +1,88 @@
+@use '../../scss/core' as *;
+
+table {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto auto;
+  grid-auto-rows: minmax(60px, auto);
+  width: 100%; 
+  th {
+    text-align: center;
+    span {
+      display: flex;
+      gap: 0.25ch;
+      width: fit-content;
+      cursor: pointer;
+    }
+  }
+  td span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  td:nth-child(3), td:nth-child(5), td:nth-child(6) {
+    text-align: center;
+  }
+}
+
+thead, tbody, tr {
+  display: contents;
+}
+
+td, th {
+  display: grid;
+  align-items: center;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-primary), transparent 80%);
+  cursor: default;
+}
+
+.subject-td {
+  color: rgb(119, 58, 119);
+}
+
+.add-button, .remove-button {
+  padding: 1ch 2ch;
+  border-radius: 10px;
+  color: $text-muted;
+  background-color: $color-primary;
+}
+
+:host-context(html[data-theme="light"]) {
+  .add-button, .remove-button {
+    color: $text-muted-inverse;
+  }
+}
+
+.pagination-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 3rem;
+  color: $text-primary;
+  label {
+    margin-right: 1ch;
+  }
+  input {
+    width: 4ch;
+    border: 1px solid color-mix(in srgb, var(--text-primary), transparent 50%);
+    border-radius: 4px;
+    text-align: center;
+    color: $text-primary;
+  }
+  input::-webkit-inner-spin-button,
+  input::-webkit-outer-spin-button {
+    opacity: 1 !important;
+    -webkit-appearance: inner-spin-button !important;
+  }
+  button {
+    display: flex;
+    color: $text-primary;
+    ::ng-deep .icon {
+      width: 1.2em;
+    }
+  }
+}
+
+app-icons {
+  display: flex;
+}
