@@ -25,6 +25,11 @@ export class CourseService {
     {initialValue: [] as Course[]}
   );
 
+  allSubjects = computed(() => {
+     const subjects = this.allCourses().map(course => course.subject);
+     return [...new Set(subjects)];
+  });
+
   currentPage = signal<number>(1);
   itemsPerPage = 50;
 

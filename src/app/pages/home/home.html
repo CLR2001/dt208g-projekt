@@ -1,3 +1,18 @@
 <section class="main-content home-main">
+  <div class="filter-search-container">
+    <div>
+      <label for="search">Sök:</label>
+      <input type="text" id="search" #search (input)="courseService.setSearchInput(search.value)">
+    </div>
+    <div>
+      <label for="subject">Ämne:</label>
+      <select name="subject" id="subject" #subject (input)="courseService.setSubject(subject.value)">
+        <option value="Alla">Alla</option>
+        @for (subject of courseService.allSubjects(); track subject) {
+          <option [value]="subject">{{ subject }}</option>
+        }
+      </select>
+    </div>
+  </div>
   <app-course-table></app-course-table>
 </section>

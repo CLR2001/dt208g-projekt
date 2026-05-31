@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CourseTable } from '../../components/course-table/course-table';
+import { CourseService } from '../../services/courses.service';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +8,6 @@ import { CourseTable } from '../../components/course-table/course-table';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home {}
+export class Home {
+  courseService = inject(CourseService);
+}

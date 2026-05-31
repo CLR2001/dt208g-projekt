@@ -11,11 +11,10 @@ import { Icons } from '../icons/icons';
   styleUrl: './course-table.scss',
 })
 export class CourseTable {
-  @Input() courses: Course[] = [];
   @Input() type: 'add' | 'remove' = 'add';
   @Input() buttonText = 'Lägg till';
 
-  courseService = inject(CourseService)
+  courseService = inject(CourseService);
 
   onButtonClick(courseCode: string): void {
     if (this.type === 'add') {
