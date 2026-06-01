@@ -3,11 +3,12 @@ import { Course } from '../../interfaces/course.interface';
 import { CourseService } from '../../services/courses.service';
 import { Icons } from '../icons/icons';
 import { RamschemaService } from '../../services/saved-courses.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-course-table',
   standalone: true,
-  imports: [Icons],
+  imports: [Icons, FormsModule],
   templateUrl: './course-table.html',
   styleUrl: './course-table.scss',
 })

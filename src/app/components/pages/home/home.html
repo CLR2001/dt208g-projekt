@@ -3,11 +3,11 @@
   <div class="filter-search-container">
     <div>
       <label for="search">Sök:</label>
-      <input type="text" id="search" #search (input)="courseService.setSearchInput(search.value)" autocomplete="off">
+      <input type="text" id="search" [(ngModel)]="courseService.searchInput" autocomplete="off">
     </div>
     <div>
       <label for="subject">Ämne:</label>
-      <select name="subject" id="subject" #subject (input)="courseService.setSubject(subject.value)">
+      <select name="subject" id="subject" [(ngModel)]="courseService.selectedSubject">
         <option value="Alla">Alla</option>
         @for (subject of courseService.allSubjects(); track subject) {
           <option [value]="subject">{{ subject }}</option>

@@ -77,7 +77,10 @@
 
     <span>
       <label for="page"></label> 
-      <input type="number" id="page" [value]="courseService.currentPage()" (input)="courseService.setPage($event)" min="1" [max]="courseService.totalPages()">
+      <input type="number" id="page" 
+      [(ngModel)]="courseService.currentPage" 
+      (ngModelChange)="courseService.currentPage.set($event < 1 ? 1 : ($event > courseService.totalPages() ? courseService.totalPages() : $event))"
+      min="1" [max]="courseService.totalPages()">
       / {{ courseService.totalPages() }}
     </span>
 

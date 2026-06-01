@@ -94,17 +94,8 @@ export class CourseService {
     return totalPoints;
   });
 
-  /* --------------------------- Filtering & Sorting -------------------------- */
-  setSearchInput(input: string): void {
-    this.searchInput.set(input);
-    this.currentPage.set(1);
-  }
-
-  setSubject(subject: string): void {
-    this.selectedSubject.set(subject);
-    this.currentPage.set(1);
-  }
-
+  
+  /* --------------------------------- Sorting -------------------------------- */
   setSortConfig(column: SortConfig['column']): void {
     this.sortConfig.update(config => ({
       column,
@@ -122,14 +113,5 @@ export class CourseService {
 
   previousPage(): void {
     this.currentPage.update(page => Math.max(1, page - 1));
-  }
-
-  setPage(event: Event): void {
-    const input = event.target as HTMLInputElement;
-
-    const page = Number(input.value);
-    if (page >= 1 && page <= this.totalPages()) {
-      this.currentPage.set(page);
-    }
   }
 }
