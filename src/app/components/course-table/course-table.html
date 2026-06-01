@@ -29,22 +29,26 @@
     <tbody>
       @for (course of courses(); track $index) {
         <tr>
-          <td>{{ course.courseCode }}</td>
-          <td>
+          <td [attr.data-label]="'Kurskod:'">
+            {{ course.courseCode }}
+          </td>
+          <td [attr.data-label]="'Kursnamn:'">
             <span [title]="course.courseName">
               {{ course.courseName }}
             </span>
           </td>
-          <td>{{ course.points }}p</td>
-          <td>
+          <td [attr.data-label]="'Poäng:'">
+            {{ course.points }}p
+          </td>
+          <td [attr.data-label]="'Ämne:'">
             <span [title]="course.subject">
               {{ course.subject }}
             </span>
           </td>
-          <td class="syllabus-td">
+          <td class="syllabus-td" [attr.data-label]="'link-and-button:'">
             <a href="{{ course.syllabus }}" target="_blank">Kursplan</a>
           </td>
-          <td>
+          <td [attr.data-label]="'link-and-button:'">
             <button class="{{type()}}-button" 
               (click)="onButtonClick(course.courseCode)"
               [disabled]="type() === 'add' && ramschemaService.savedCourseCodes().has(course.courseCode)">

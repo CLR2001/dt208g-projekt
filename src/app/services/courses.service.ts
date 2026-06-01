@@ -14,6 +14,18 @@ export class CourseService {
   private http = inject(HttpClient);
   ramschemaService = inject(RamschemaService);
 
+  constructor() {
+    const windowWidth = window.matchMedia('(max-width: 900px)');
+    windowWidth.addEventListener('change', (event) => {
+      this.isMobile.set(event.matches);
+    })
+
+    effect(() => {
+      this.isMobile();
+      this.currentPage.set(1);
+    })
+  }
+
   /* --------------------------------- Signals -------------------------------- */
   allCourses = toSignal(
     this.http.get<Course[]>('/miun_courses.json'),
@@ -25,9 +37,10 @@ export class CourseService {
      return [...new Set(subjects)];
   });
 
+  isMobile = signal<boolean>(window.matchMedia('(max-width: 900px)').matches);
   currentView = signal<'home' | 'ramschema'>('home');
+  itemsPerPage = computed(() => this.isMobile() ? 15 : 50);
   currentPage = signal<number>(1);
-  itemsPerPage = 50;
 
   searchInput = signal('');
   selectedSubject = signal<string>('Alla');
@@ -75,13 +88,13 @@ export class CourseService {
     const courses = this.filteredAndSortedCourses();
 
     const page = this.currentPage();
-    const startIndex = (page - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
+    const startIndex = (page - 1) * this.itemsPerPage();
+    const endIndex = startIndex + this.itemsPerPage();
     return courses.slice(startIndex, endIndex);
   });
 
   totalPages = computed(() => {
-    return Math.ceil(this.filteredAndSortedCourses().length / this.itemsPerPage) || 1;
+    return Math.ceil(this.filteredAndSortedCourses().length / this.itemsPerPage()) || 1;
   });
 
   savedCourses = computed(() => {

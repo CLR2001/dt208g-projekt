@@ -1,6 +1,6 @@
 @use '../../scss/core' as *;
 
-table {
+.courseTable {
   display: grid;
   grid-template-columns: auto 1.5fr auto 1fr auto auto;
   grid-auto-rows: minmax(60px, auto);
@@ -77,6 +77,12 @@ td, th {
   }
 }
 
+:host-context(html[data-theme="dark"]) {
+  input, select {
+    color-scheme: dark;
+  }
+}
+
 .pagination-container {
   display: flex;
   gap: 0.75rem;
@@ -109,11 +115,96 @@ app-icons {
 }
 
 @media (max-width: 900px) {
-  td, th {
-    padding: 0.25ch;
+  .courseTable {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    th, td {
+      border-bottom: none;
+    }
+  }
+  
+  thead {
+    display: none;
   }
 
-  .add-button, .remove-button {
-    padding: 0.5ch 1ch;
+  tbody tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, auto);
+    gap: 1ch;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: white;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.02),
+      0 4px 8px rgba(0, 0, 0, 0.02),
+      0 8px 16px rgba(0, 0, 0, 0.04),
+      0 16px 32px rgba(0, 0, 0, 0.04);
+    td span {
+      white-space: unset;
+      overflow: unset;
+      text-overflow: unset;
+    }
+  }
+
+
+  :host-context(html[data-theme="dark"]) {
+    tbody tr {
+      background-color: $color-primary;
+    }
+
+    .add-button, .remove-button {
+      background-color: $color-background;
+      box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.02),
+        0 4px 8px rgba(0, 0, 0, 0.02),
+        0 8px 16px rgba(0, 0, 0, 0.04),
+        0 16px 32px rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  td:not([data-label="link-and-button:"], [data-label="Kursnamn:"]) {
+    grid-column: 1 / 3;
+    justify-content: start;
+    padding: 0;
+    &::before{
+        content: attr(data-label);
+        font-weight: 600;
+        color: #777;
+      }
+  }
+
+  td[data-label="Kursnamn:"] {
+    order: 1;
+    grid-column: 1 / 3;
+    padding: 0;
+    font-size: 1.1em;
+    font-weight: 700;
+  }
+
+  td[data-label="Kurskod:"] {
+    order: 2;
+    display: flex;
+    gap: 0.5ch;
+    align-items: start;
+  }
+
+  td[data-label="Ämne:"] {
+    order: 3;
+  }
+
+  td[data-label="Poäng:"] {
+    order: 4;
+    display: flex;
+    gap: 0.5ch;
+    align-items: start;
+  }
+
+  td[data-label="link-and-button:"] {
+    order: 5;
+    width: fit-content;
+    margin: auto;
+    padding: 0;
   }
 }

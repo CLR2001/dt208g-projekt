@@ -3,7 +3,7 @@
 .nav-list {
   ul {
     position: fixed;
-    inset:  $header-height 0 0 0;
+    inset:  calc($header-height - 2px) 0 0 0;
     display: none;
     flex-direction: column;
     gap: 2rem;
@@ -26,6 +26,8 @@
 
 body:has([data-open="true"]) {
   overflow: hidden;
+  padding-right: $scrollbar-width;
+  background-color: $color-primary;
 }
 
 .nav-list[data-open="true"] {
@@ -61,7 +63,7 @@ body:has([data-open="true"]) {
 }
 
 
-@media (min-width: 992px) {
+@media (min-width: 901px) {
   .nav-list {
     ul {
       position: static;

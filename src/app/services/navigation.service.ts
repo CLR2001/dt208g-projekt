@@ -23,7 +23,7 @@ export class NavigationService {
     window.addEventListener('resize', () => {
       this.updateVariables(header);
       
-      if (window.innerWidth > 991 && this.isMenuOpen()) {
+      if (window.innerWidth > 899 && this.isMenuOpen()) {
         this.closeMenu();
       }
     });
