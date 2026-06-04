@@ -6,6 +6,7 @@ Detta repository innehåller projektuppgiften för kursen DT208G.
 Denna webbplats innehåller funktionalitet för att skapa ett eget ramschema utifrån en lista av samtliga kurser som fanns i Mittuniversitetets kurslista 2023.
 
 ## ⚙ Funktioner
+Alla grundkrav för applikationen är utförda, extra funktionalitet som lagts till är paginering.
 * **Angular & TypeScrript:** Projektet använder ramverket Angular för en modernare arbetsprocess och TypeScript för en mer robust och säker kod.
 * **Dynamisk filtrering/sök:** Listan av kurser har funktionalitet för att söka, filtrera och sortera utifrån olika parametrar för att enklare hitta kurser man letar efter.
 * **Paginering:** För att förbättra användarupplevelsen skrevs inte all kurser ut samtidigt utan endast ett fåtal. Användaren kan sedan byta sida via knappar för att läsa in resterande kurser.
