@@ -6,5 +6,5 @@ import { Ramschema } from './components/pages/ramschema/ramschema';
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'ramschema', component: Ramschema },
-  { path: '**', component: Home }
+  { path: '**', redirectTo: '' }
 ];

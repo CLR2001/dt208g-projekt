@@ -1,59 +1,38 @@
-# Projekt
+# ◈ Projektuppgift - DT208G
+Detta repository innehåller projektuppgiften för kursen DT208G.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
 
-## Development server
+## ✦ Projektbeskrivning
+Denna webbplats innehåller funktionalitet för att skapa ett eget ramschema utifrån en lista av samtliga kurser som fanns i Mittuniversitetets kurslista 2023.
 
-To start a local development server, run:
+## ⚙ Funktioner
+* **Angular & TypeScrript:** Projektet använder ramverket Angular för en modernare arbetsprocess och TypeScript för en mer robust och säker kod.
+* **Dynamisk filtrering/sök:** Listan av kurser har funktionalitet för att söka, filtrera och sortera utifrån olika parametrar för att enklare hitta kurser man letar efter.
+* **Paginering:** För att förbättra användarupplevelsen skrevs inte all kurser ut samtidigt utan endast ett fåtal. Användaren kan sedan byta sida via knappar för att läsa in resterande kurser.
 
-```bash
-ng serve
-```
+## ⌨ Installation & Setup
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. **Klona projektet:**
+   ```bash
+   git clone https://github.com/CLR2001/dt208g-projekt
+   ```
+2. **Installera beroenden:**
+   ```bash
+   npm install
+   ```
+3. **Starta projektet:**
+   ```bash
+   npm run dev
+   ```
+   Eller
+   ```bash
+   npm run build
+   npm run preview
+   ```
 
-## Code scaffolding
+## ⬀ Länk till webbplats
+[Webbplats](https://dt208g-projekt.clr-server.com/)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## ⬢ Utvecklare
+**Ludvig Rosenqvist** — *Student*
+🔗 [GitHub](https://github.com/CLR2001)
